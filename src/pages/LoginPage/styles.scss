@@ -1,0 +1,41 @@
+.login-form{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 30px 60px;
+	width: 250px;
+    border: 4px solid rgb(73, 73, 73);
+
+    h3 {
+        color: rgb(73, 73, 73);
+        text-align: center;
+    }
+
+    input{
+        padding: 5px;
+        margin-top: 5px;
+        margin-left: 10%;
+        border: 2px solid rgb(73, 73, 73);
+    }
+
+    button {
+        margin-left: 35%;
+    }
+
+    span {
+        margin-left: 10%;
+        color: rgb(73, 73, 73);
+        font-weight: 700;
+    }
+
+    .error-text {
+        color: red;
+        opacity: 1;
+        font-size: 0.8rem;
+        margin-left: -8%;
+        text-align: center;
+        display: block;
+    }
+}
