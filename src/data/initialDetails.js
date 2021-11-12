@@ -1,6 +1,6 @@
 export const booksData = [
     {
-        image : "../../images/book.jpg",
+        image : "./images/pilgrim.jpg",
         title: "The Pilgrim’s Progress",
         author: "John Bunyan",
         description: "A story of a man in search of truth told with the simple clarity and beauty of Bunyan’s prose make this the ultimate English classic.",
@@ -8,7 +8,7 @@ export const booksData = [
         available: 5
     },
     {
-        image : "../../images/book.png",
+        image : "./images/robinson.jpg",
         title: "Robinson Crusoe",
         author: "Daniel Defoe",
         description: "Crusoe’s world-famous novel is a complex literary confection, and it’s irresistible.",
@@ -16,7 +16,7 @@ export const booksData = [
         available: 10
     },
     {
-        image : "../../images/book.png",
+        image : "./images/gulliver.jpg",
         title: "Gulliver’s Travels",
         author: "Jonathan Swift",
         description: "Jonathan Swift’s Gulliver’s Travels comes third in our list of the best novels written in English.",
@@ -24,7 +24,7 @@ export const booksData = [
         available: 5
     },
     {
-        image : "../../images/book.png",
+        image : "./images/clarissa.jpg",
         title: "Clarissa",
         author: "Samuel Richardson",
         description: "The first book in the world for the knowledge it displays of the human heart.",

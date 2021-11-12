@@ -11,7 +11,7 @@ import './styles.scss';
 const { TabPane } = Tabs;
 
 function callback(key) {
-  console.log(key, "Tab");
+//   console.log(key, "Tab");
 };
 
 function useForceUpdate(){
@@ -74,7 +74,7 @@ function HomePage(props){
             {
                 ...formValue,
                 available: 1,
-                image: !!formValue.image ? formValue.image : "../../images/book.png",
+                image: !!formValue.image ? formValue.image : "./images/book.jpg",
             }
         ]);
         setIsModalVisible(false);
@@ -170,7 +170,7 @@ function HomePage(props){
         <div className="top-container">
         <div style={{ margin: '10px' }}>
             <div style={{ display: 'flow-root', borderBottom: '3px solid #ff014e' }}>
-                <h3 style={{float: 'left', color: '#891dd0'}}>{userType} Dashboard</h3>
+                <h3 style={{float: 'left', color: '#891dd0'}}>Mr.{userName.charAt(0).toUpperCase() + userName.slice(1)} Dashboard</h3>
                 <Button style={{float: 'right', color: '#891dd0', fontWeight: '500'}} onClick={logOut}>Log out</Button>
             </div>
             <div>
@@ -187,7 +187,7 @@ function HomePage(props){
                                 name="search"
                                 onChange={(e) => setSearch(e.target.value)}
                                 value={search}
-                                placeholder="search book"
+                                placeholder="Search book"
                             />
                             <Button style={{color: '#891dd0'}} onClick={onSearch}>
                                 <SearchOutlined />

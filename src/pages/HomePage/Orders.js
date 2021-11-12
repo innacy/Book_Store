@@ -59,7 +59,6 @@ const Orders = props => {
         // forceUpdate();
     };
 
-
     return (
         <>
         <Row style={{marginBottom: '20px'}}>

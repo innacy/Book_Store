@@ -58,13 +58,13 @@ const BookInfo = props => {
     return (
         <div className="single-book">
             <Row>
-                <Col span={4}>
+                <Col span={2}>
                     <div className="pic">
                         <img src={data.image}/>
                     </div>
                 </Col>
                 <Col span={1}></Col>
-                <Col span={6}>
+                <Col span={8}>
                     <span className="book-label">Book Title: </span>
                     <span className="book-detail">{data.title}</span>
                     <br />
@@ -101,7 +101,7 @@ const BookInfo = props => {
                     <br />
                     {userType === 'User' && (
                         <>
-                        <span className="label">Quantity : </span>
+                        <span className="book-label">Quantity : </span>
                         <input
                             type="number"
                             name="quantity"
@@ -138,7 +138,6 @@ const BookInfo = props => {
                             Order
                         </AntdButton>
                     )}
-
                 </Col>
             </Row>
         </div>
