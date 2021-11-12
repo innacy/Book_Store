@@ -30,6 +30,7 @@ function HomePage(props){
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [filteredData, setFilteredData] = useState([]);
     const [search, setSearch] = useState("");
+    const [ refresh, setRefresh ] = useState(true);
     const forceUpdate = useForceUpdate();
 
     const showModal = () => {
@@ -78,6 +79,7 @@ function HomePage(props){
             }
         ]);
         setIsModalVisible(false);
+        alert("New book added..!");
     };
 
     const onSearch = (e) => {
@@ -90,7 +92,11 @@ function HomePage(props){
                     .toLowerCase()
                     .includes(search.toLowerCase())
                 );
-                });
+            });
+            if (filteredBooks.length === 0) {
+                alert("No books found..!");
+                setSearch("");
+            };
             setFilteredData(filteredBooks);
             return;
         }
@@ -100,9 +106,9 @@ function HomePage(props){
 
     const updateBookdata = values => {
         if (values.available < 0){
-            alert("Available Quantity can't be negative!");
+            alert("Available Quantity can't be negative..!");
         } else if (values.available === 0){
-            alert("Can't update, Please remove the book!");
+            alert("Can't update, Please remove the book..!");
         } else {
             const updatedData = data.map(book => {
                 if(book.title === values.title) {
@@ -126,14 +132,15 @@ function HomePage(props){
     };
 
     const updateOrderdata = values => {
+        setRefresh(false);
         const selectedBook = data.find(book => book.title === values.book);
         const {quantity} = values;
         const { available } = selectedBook;
         if (quantity < 0) {
-            alert("Quantity can't be negative!");
+            alert("Quantity can't be negative..!");
             return;
         } else if (quantity > available) {
-            alert("Available Quantity is low");
+            alert("Available Quantity is low..!");
             return;
         } else if (quantity === available) {
             const index = data.indexOf(data.find(book => book.title === values.book));
@@ -148,13 +155,15 @@ function HomePage(props){
                 return book;
             });
             setData(updatedData);
-            orderData.push(values);
-            return;
         }
         orderData.push(values);
+        alert("Books Successfully ordered..!");
+        setTimeout(() => {
+            setRefresh(true);
+        },500);
         // console.log(data);
-        console.log(orderData);
-        forceUpdate();
+        // console.log(orderData);
+        // forceUpdate();
     };
 
     const logOut = () => {
@@ -295,7 +304,7 @@ function HomePage(props){
                         </Col>
                     </Row>
                     <br />
-                    {(!!filteredData.length ? filteredData : data)?.length !== 0 ? (
+                    { refresh && ((!!filteredData.length ? filteredData : data)?.length !== 0 ? (
                         <div className="all-books">
                             {(!!filteredData.length ? filteredData : data).map(book => {
                                 return (
@@ -312,9 +321,9 @@ function HomePage(props){
                         </div>
                     ) : (
                         <div style={{textAlign: 'center'}}>
-                            Sorry, No books available!
+                            <span>Sorry, No books available..!</span>
                         </div>
-                    )}
+                    ))}
                 </TabPane>
                 <TabPane tab="Orders" key="orders">
                     <Orders 

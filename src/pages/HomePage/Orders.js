@@ -51,7 +51,11 @@ const Orders = props => {
                     .toLowerCase()
                     .includes(search.toLowerCase())
                 );
-                });
+            });
+            if (filteredBooks.length === 0) {
+                alert("No Orders found on this book name..!");
+                setSearch("");
+            };
             setFilteredData(filteredBooks);
             return;
         }

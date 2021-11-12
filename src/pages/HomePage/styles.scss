@@ -26,6 +26,11 @@ body{
     opacity: .3;
 }
 
+span {
+    font-weight: 500;
+    color: $textColor;
+}
+
 .add-book-form {
     span {
         float: right;
@@ -68,7 +73,7 @@ body{
     }
 
     input {
-        border: 2px solid $textColor;
+        border: 2px solid $borderColor;
         width: 20%;
         padding: 0 10px;
         font-weight: 500;
