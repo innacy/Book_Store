@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { Button } from 'antd';
+
 import './styles.scss';
 
 const LoginForm = () => {
     const [error, setError] = useState('');
-    const [type, setType] = useState('user');
     const [redirect, setRedirect] = useState(false);
 
     const [formValue, setFormValue] = useState({
@@ -25,18 +26,22 @@ const LoginForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(formValue);
+        // console.log(formValue);
         const { username, password } = formValue;
-        if (username === 'admin' && password === 'admin') {
+        
+        if (username === 'admin' && password !== 'admin') {
+            setError("password incorrect");
+            return;
+        } else if (username === 'admin' && password === 'admin') {
             localStorage.setItem('Type', 'admin');
-        }else if (username === password) {
+        } else if (username === password) {
             setError("Username cannot be duplicated");
             return;
-        }else if (password.length <= 8) {
+        } else if (password.length <= 8) {
             setError("password must have minimum 8 characters");
             return;
         }
-        localStorage.setItem('Type', 'user');
+        localStorage.setItem('User', username);
         setTimeout(() => {
             setRedirect(true);
         },1000);
@@ -50,7 +55,7 @@ const LoginForm = () => {
 
     return (
         <>
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="login-form">
 		    <h3>Login | Register</h3>
             <span> Username </span>
             <br />
@@ -75,9 +80,9 @@ const LoginForm = () => {
 				<span className="error-text">{error}</span>
             )}
             <br />
-            <button style={{align: 'center'}} type="submit" disabled={!(!!username && !!password)}>
+            <Button disabled={!(!!username && !!password)} onClick={handleSubmit}>
                 Login
-            </button>
+            </Button>
 		</form>
         </>
     );

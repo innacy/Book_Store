@@ -1,3 +1,8 @@
+@import '~antd/dist/antd.css';
+
+$textColor: #891dd0;
+$borderColor: #ff014e;
+
 .login-form{
 	position: absolute;
 	top: 50%;
@@ -5,19 +10,22 @@
 	transform: translate(-50%, -50%);
 	background-color: #fff;
 	padding: 30px 60px;
-	width: 250px;
-    border: 4px solid rgb(73, 73, 73);
+	width: 400px;
+    border: 4px solid $borderColor;
 
     h3 {
-        color: rgb(73, 73, 73);
+        color: $textColor;
         text-align: center;
+        font-weight: 700;
     }
 
     input{
         padding: 5px;
         margin-top: 5px;
         margin-left: 10%;
-        border: 2px solid rgb(73, 73, 73);
+        width: 80%;
+        border: 3px solid $borderColor;
+        font-weight: 500;
     }
 
     button {
@@ -26,7 +34,7 @@
 
     span {
         margin-left: 10%;
-        color: rgb(73, 73, 73);
+        color: $textColor;
         font-weight: 700;
     }
 
@@ -34,7 +42,7 @@
         color: red;
         opacity: 1;
         font-size: 0.8rem;
-        margin-left: -8%;
+        margin-left: -3%;
         text-align: center;
         display: block;
     }
