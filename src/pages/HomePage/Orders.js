@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useTable } from 'react-table';
 import { Row, Col, Button } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Moment from 'moment';
 
+import TableView from './Table';
 import './styles.scss';
 
 const columns = () => [
@@ -47,7 +47,7 @@ const Orders = props => {
             const filteredBooks = data?.filter(book => {
                 return (
                     book
-                    .title
+                    .book
                     .toLowerCase()
                     .includes(search.toLowerCase())
                 );
@@ -59,16 +59,6 @@ const Orders = props => {
         // forceUpdate();
     };
 
-    const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        rows,
-        prepareRow,
-    } = useTable({
-        columns: columns(),
-        data: !!filteredData.length ? filteredData : data,
-    });
 
     return (
         <>
@@ -83,7 +73,7 @@ const Orders = props => {
                     name="search"
                     onChange={(e) => setSearch(e.target.value)}
                     value={search}
-                    placeholder="search"
+                    placeholder="search book"
                 />
                 <Button style={{color: '#891dd0'}} onClick={onSearch}>
                     <SearchOutlined />
@@ -93,37 +83,10 @@ const Orders = props => {
             </Col>
         </Row>
         <br />
-        {data?.length !== 0 ? (
-            <div>
-                <table {...getTableProps()}>
-                <thead>
-                    {headerGroups.map(headerGroup => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                        {headerGroup.headers.map(column => (
-                        <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                        ))}
-                    </tr>
-                    ))}
-                </thead>
-                <tbody {...getTableBodyProps()}>
-                    {rows.map((row, i) => {
-                    prepareRow(row)
-                    return (
-                        <tr {...row.getRowProps()}>
-                        {row.cells.map(cell => {
-                            return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                        })}
-                        </tr>
-                    )
-                    })}
-                </tbody>
-                </table>
-            </div>
-        ) : (
-            <div style={{textAlign: 'center'}}>
-                Sorry, No orders available!
-            </div>
-        )}
+        <TableView
+            data={!!filteredData.length ? filteredData : data}
+            columns={columns()}
+        />
         </>
     )
 }
