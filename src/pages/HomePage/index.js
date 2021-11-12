@@ -105,6 +105,7 @@ function HomePage(props){
     }
 
     const updateBookdata = values => {
+        setRefresh(false);
         if (values.available < 0){
             alert("Available Quantity can't be negative..!");
         } else if (values.available === 0){
@@ -120,6 +121,9 @@ function HomePage(props){
         }
         // console.log(data);
         // forceUpdate();
+        setTimeout(() => {
+            setRefresh(true);
+        },500);
     };
 
     const removeBookdata = values => {
