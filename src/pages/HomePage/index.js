@@ -138,15 +138,15 @@ function HomePage(props){
         const { available } = selectedBook;
         if (quantity < 0) {
             alert("Quantity can't be negative..!");
-            return;
         } else if (quantity > available) {
             alert("Available Quantity is low..!");
-            return;
         } else if (quantity === available) {
             const index = data.indexOf(data.find(book => book.title === values.book));
             if (index > -1) {
                 data.splice(index, 1);
             };
+            orderData.push(values);
+            alert("Books Successfully ordered..!");
         } else {
             const updatedData = data.map(book => {
                 if(book.title === values.book) {
@@ -155,15 +155,14 @@ function HomePage(props){
                 return book;
             });
             setData(updatedData);
+            orderData.push(values);
+            alert("Books Successfully ordered..!");
         }
-        orderData.push(values);
-        alert("Books Successfully ordered..!");
+        // console.log(data);
+        // console.log(orderData);
         setTimeout(() => {
             setRefresh(true);
         },500);
-        // console.log(data);
-        // console.log(orderData);
-        // forceUpdate();
     };
 
     const logOut = () => {
